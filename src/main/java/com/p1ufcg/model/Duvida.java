@@ -1,10 +1,11 @@
-package model;
+package com.p1ufcg.model;
 
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.p1ufcg.util.DuvidaStatus;
 
 import javax.persistence.Entity;
-
-import util.DuvidaStatus;
 
 @Entity
 public class Duvida {

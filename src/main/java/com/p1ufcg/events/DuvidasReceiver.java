@@ -1,8 +1,10 @@
-package events;
+package com.p1ufcg.events;
+
+import com.p1ufcg.repository.DuvidaRepository;
+import com.p1ufcg.util.Configs;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import repository.DuvidaRepository;
 
 public class DuvidasReceiver extends ListenerAdapter {
 	
@@ -21,20 +23,20 @@ public class DuvidasReceiver extends ListenerAdapter {
 
 	private void checarComando(GuildMessageReceivedEvent event) {
 		String message = event.getMessage().getContentRaw().toLowerCase();
-		if (message.contains(util.Configs.duvidaCommand)) {
+		if (message.contains(Configs.duvidaCommand)) {
 			comandoDuvida(message, event);
 		}
 	}
 	
 	public void comandoDuvida(String message, GuildMessageReceivedEvent event) {
-		String mensagemDividida = message.substring(util.Configs.duvidaCommand.length()+1, message.length());
+		String mensagemDividida = message.substring(Configs.duvidaCommand.length()+1, message.length());
 		
 		registrarDuvida(mensagemDividida, event);
 	}
 	
 	public void registrarDuvida(String entrada, GuildMessageReceivedEvent event) {
 		event.getMessage()
-			.addReaction(util.Configs.duvidaHelpReaction)
+			.addReaction(Configs.duvidaHelpReaction)
 			.queue();
 		criarDuvida(entrada, event);
 	}

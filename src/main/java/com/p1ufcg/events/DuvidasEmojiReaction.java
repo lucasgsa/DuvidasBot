@@ -1,8 +1,11 @@
-package events;
+package com.p1ufcg.events;
 
 import java.util.EnumSet;
 
-import model.Duvida;
+import com.p1ufcg.model.Duvida;
+import com.p1ufcg.repository.DuvidaRepository;
+import com.p1ufcg.util.Configs;
+
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Category;
 import net.dv8tion.jda.api.entities.Guild;
@@ -10,7 +13,6 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import repository.DuvidaRepository;
 
 public class DuvidasEmojiReaction extends ListenerAdapter {
 	
@@ -34,7 +36,7 @@ public class DuvidasEmojiReaction extends ListenerAdapter {
 				event.getChannel().retrieveMessageById(messageId).queue(
 						message -> {
 							message.clearReactions().queue();
-							message.addReaction(util.Configs.duvidaRespondida).queue();
+							message.addReaction(Configs.duvidaRespondida).queue();
 						}
 						);
 				}
@@ -43,7 +45,7 @@ public class DuvidasEmojiReaction extends ListenerAdapter {
 	
 	private boolean reacterIsMonitor(GuildMessageReactionAddEvent event) {
 		for (Role role:event.getMember().getRoles()) {
-			if (role.getName().equals(util.Configs.monitorRole)) {
+			if (role.getName().equals(Configs.monitorRole)) {
 				return true;
 			}
 		}
@@ -53,7 +55,7 @@ public class DuvidasEmojiReaction extends ListenerAdapter {
 	private void createRoom(GuildMessageReactionAddEvent event) {
 		Long messageId = event.getMessageIdLong();
 		Duvida duvida = duvidaRepository.getDuvida(messageId);
-		String roomName = util.Configs.roomPrefix+event.getMessageId();
+		String roomName = Configs.roomPrefix+event.getMessageId();
 	
 		Category categoria = event.getMember().getGuild().getCategoriesByName("duvidas", true).get(0);
 		

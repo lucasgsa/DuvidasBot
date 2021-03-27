@@ -1,4 +1,4 @@
-package repository;
+package com.p1ufcg.repository;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Duvida;
-import util.DuvidaStatus;
+import com.p1ufcg.model.Duvida;
+import com.p1ufcg.util.DuvidaStatus;
 
 public class DuvidaRepository {
 	private static EntityManager entityManager;

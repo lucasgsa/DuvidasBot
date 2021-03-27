@@ -1,8 +1,10 @@
-package events;
+package com.p1ufcg.events;
+
+import com.p1ufcg.repository.DuvidaRepository;
+import com.p1ufcg.util.Configs;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import repository.DuvidaRepository;
 
 public class DuvidasCommandsRoom extends ListenerAdapter {
 	
@@ -20,7 +22,7 @@ public class DuvidasCommandsRoom extends ListenerAdapter {
 	
 	private void checarComando(GuildMessageReceivedEvent event) {
 		String message = event.getMessage().getContentRaw().toLowerCase();
-		if (message.contains(util.Configs.finalizarDuvidaCommand)) {
+		if (message.contains(Configs.finalizarDuvidaCommand)) {
 			if (checarSala(event)) {
 				removerSala(event);
 			}

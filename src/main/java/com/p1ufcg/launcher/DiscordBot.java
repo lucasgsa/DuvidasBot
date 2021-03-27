@@ -1,20 +1,16 @@
-package launcher;
-import java.io.IOException;
+package com.p1ufcg.launcher;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.security.auth.login.LoginException;
 
-import org.json.simple.parser.ParseException;
+import com.p1ufcg.events.DuvidasCommandsRoom;
+import com.p1ufcg.events.DuvidasEmojiReaction;
+import com.p1ufcg.events.DuvidasReceiver;
+import com.p1ufcg.repository.DuvidaRepository;
+import com.p1ufcg.util.Configs;
 
-import events.DuvidasCommandsRoom;
-import events.DuvidasEmojiReaction;
-import events.DuvidasReceiver;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import repository.DuvidaRepository;
 
 public class DiscordBot {
 	private JDA jda;
@@ -23,7 +19,7 @@ public class DiscordBot {
 	
 	public void initializeJDA() throws LoginException {
 		// Bot login.
-		String discordToken = util.Configs.discordToken;
+		String discordToken = Configs.discordToken;
 		
 		JDABuilder jdaBuilder = JDABuilder.createDefault(discordToken);
 		
