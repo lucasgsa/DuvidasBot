@@ -1,6 +1,7 @@
 package com.p1ufcg.events;
 
 import com.p1ufcg.repository.DuvidaRepository;
+import com.p1ufcg.util.ComandosFormat;
 import com.p1ufcg.util.Configs;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -23,7 +24,7 @@ public class DuvidasReceiver extends ListenerAdapter {
 
 	private void checarComando(GuildMessageReceivedEvent event) {
 		String message = event.getMessage().getContentRaw().toLowerCase();
-		if (message.contains(Configs.duvidaCommand)) {
+		if (ComandosFormat.comandoDuvidaValido(message)) {
 			comandoDuvida(message, event);
 		}
 	}
