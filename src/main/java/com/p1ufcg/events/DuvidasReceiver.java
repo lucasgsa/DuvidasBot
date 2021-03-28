@@ -30,7 +30,7 @@ public class DuvidasReceiver extends ListenerAdapter {
 	}
 	
 	public void comandoDuvida(String message, GuildMessageReceivedEvent event) {
-		String mensagemDividida = message.substring(Configs.duvidaCommand.length()+1, message.length());
+		String mensagemDividida = ComandosFormat.getDuvida(message);
 		
 		registrarDuvida(mensagemDividida, event);
 	}
