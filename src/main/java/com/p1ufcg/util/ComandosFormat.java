@@ -19,4 +19,5 @@ public class ComandosFormat {
 	public static String getDuvida(String entrada) {
 		return entrada.substring(Configs.duvidaCommand.length()+1, entrada.length());
 	}
+	
 }

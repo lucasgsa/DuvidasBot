@@ -1,11 +1,14 @@
 package com.p1ufcg.events;
 
+import java.awt.Color;
 import java.util.EnumSet;
+import java.util.function.Consumer;
 
 import com.p1ufcg.model.Duvida;
 import com.p1ufcg.repository.DuvidaRepository;
 import com.p1ufcg.util.Configs;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Category;
 import net.dv8tion.jda.api.entities.Guild;
@@ -13,6 +16,7 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.requests.restaction.ChannelAction;
 
 public class DuvidasEmojiReaction extends ListenerAdapter {
 	
@@ -35,8 +39,9 @@ public class DuvidasEmojiReaction extends ListenerAdapter {
 				createRoom(event);
 				event.getChannel().retrieveMessageById(messageId).queue(
 						message -> {
-							message.clearReactions().queue();
-							message.addReaction(Configs.duvidaRespondida).queue();
+							message.clearReactions().queue(voidMessage -> {
+								message.addReaction(Configs.duvidaRespondida).queue();
+							});
 						}
 						);
 				}
@@ -59,27 +64,32 @@ public class DuvidasEmojiReaction extends ListenerAdapter {
 	
 		Category categoria = event.getMember().getGuild().getCategoriesByName("duvidas", true).get(0);
 		
-		TextChannel channel = createPrivateTextChannel(roomName, categoria, event.getGuild(), duvida.getUidAluno(), duvida.getUidMonitor());
+		ChannelAction<TextChannel> channelAction = createPrivateTextChannel(roomName, categoria, event.getGuild(), duvida.getUidAluno(), duvida.getUidMonitor());
 	
-		enviarMensagemInicial(channel, duvida);
+		Consumer<TextChannel> callback = (channel) ->  {
+			enviarMensagemInicial(channel, duvida);
+			duvidaRepository.defineSala(messageId, channel.getIdLong());
+	      };
 		
-		duvidaRepository.defineSala(messageId, channel.getIdLong());
+		channelAction.queue(callback);
 	
 	}
 	
 	private void enviarMensagemInicial(TextChannel channel, Duvida duvida) {
-		String texto = "Um monitor foi colocado na sala junto com você.\n"
-				+ "A sua dúvida vai ser respondida!\n"
-				+ "Dúvida: "+ duvida.getQuestion() + "\n"
-				+ "Bons estudos. 🙂";
-		channel.sendMessage(texto).queue();
+		EmbedBuilder embedBuilder = new EmbedBuilder();
+		embedBuilder.setTitle("============== Sala para dúvidas =============");
+		embedBuilder.setColor(new Color(0, 200, 0));
+		embedBuilder.addField("Um monitor foi colocado na sala junto com você.", "A sua dúvida vai ser respondida!", true);
+		embedBuilder.addField("Dúvida:", ">>> " + duvida.getQuestion(), false);
+		embedBuilder.addField("Bons estudos.", "Quando acabar, basta digitar '!finalizar' 🙂", true);
+		channel.sendMessage(embedBuilder.build()).queue();
 	}
 	
-	private TextChannel createPrivateTextChannel(String name, Category categoria, Guild guild, Long alunoID, Long monitorID) {
+	private ChannelAction<TextChannel> createPrivateTextChannel(String name, Category categoria, Guild guild, Long alunoID, Long monitorID) {
 		return guild.createTextChannel(name, categoria)
 				.addRolePermissionOverride(guild.getPublicRole().getIdLong(), null, EnumSet.of(Permission.VIEW_CHANNEL))
 				.addMemberPermissionOverride(alunoID, EnumSet.of(Permission.VIEW_CHANNEL), null)
-				.addMemberPermissionOverride(monitorID, EnumSet.of(Permission.VIEW_CHANNEL), null).complete();
+				.addMemberPermissionOverride(monitorID, EnumSet.of(Permission.VIEW_CHANNEL), null);
 	}
 	
 }

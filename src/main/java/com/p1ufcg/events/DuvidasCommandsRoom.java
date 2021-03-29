@@ -22,7 +22,7 @@ public class DuvidasCommandsRoom extends ListenerAdapter {
 	
 	private void checarComando(GuildMessageReceivedEvent event) {
 		String message = event.getMessage().getContentRaw().toLowerCase();
-		if (message.contains(Configs.finalizarDuvidaCommand)) {
+		if (message.equals(Configs.finalizarDuvidaCommand)) {
 			if (checarSala(event)) {
 				removerSala(event);
 			}
@@ -36,6 +36,6 @@ public class DuvidasCommandsRoom extends ListenerAdapter {
 	private void removerSala(GuildMessageReceivedEvent event) {
 		Long idRoom = event.getChannel().getIdLong();
 		duvidaRepository.removerSala(event.getChannel().getIdLong());
-		event.getChannel().delete().queue();;
+		event.getChannel().delete().queue();
 	}
 }
