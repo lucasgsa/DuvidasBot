@@ -77,9 +77,9 @@ public class DuvidasEmojiReaction extends ListenerAdapter {
 	
 	private void enviarMensagemInicial(TextChannel channel, Duvida duvida) {
 		EmbedBuilder embedBuilder = new EmbedBuilder();
-		embedBuilder.setTitle("============== Sala para dúvidas =============");
+		embedBuilder.setTitle("Sala para dúvida - "+duvida.getMessageId());
+		embedBuilder.setDescription("Um monitor foi colocado na sala junto com você.\nA sua dúvida vai ser respondida!");
 		embedBuilder.setColor(new Color(0, 200, 0));
-		embedBuilder.addField("Um monitor foi colocado na sala junto com você.", "A sua dúvida vai ser respondida!", true);
 		embedBuilder.addField("Dúvida:", ">>> " + duvida.getQuestion(), false);
 		embedBuilder.addField("Bons estudos.", "Quando acabar, basta digitar '!finalizar' 🙂", true);
 		channel.sendMessage(embedBuilder.build()).queue();
