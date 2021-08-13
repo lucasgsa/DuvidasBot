@@ -59,7 +59,7 @@
             <configuration>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>com.p1ufcg.launcher.BotLauncher</mainClass>
+                  <mainClass>com.zkpnz.launcher.BotLauncher</mainClass>
                 </transformer>
               </transformers>
             </configuration>

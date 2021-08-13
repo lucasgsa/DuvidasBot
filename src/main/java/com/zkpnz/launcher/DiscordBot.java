@@ -1,12 +1,12 @@
-package com.p1ufcg.launcher;
+package com.zkpnz.launcher;
 
 import javax.security.auth.login.LoginException;
 
-import com.p1ufcg.events.DuvidasCommandsRoom;
-import com.p1ufcg.events.DuvidasEmojiReaction;
-import com.p1ufcg.events.DuvidasReceiver;
-import com.p1ufcg.repository.DuvidaRepository;
-import com.p1ufcg.util.Configs;
+import com.zkpnz.events.DuvidasCommandsRoom;
+import com.zkpnz.events.DuvidasEmojiReaction;
+import com.zkpnz.events.DuvidasReceiver;
+import com.zkpnz.repository.DuvidaRepository;
+import com.zkpnz.util.Configs;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;

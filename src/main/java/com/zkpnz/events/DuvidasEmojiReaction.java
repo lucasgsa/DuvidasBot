@@ -1,12 +1,12 @@
-package com.p1ufcg.events;
+package com.zkpnz.events;
 
 import java.awt.Color;
 import java.util.EnumSet;
 import java.util.function.Consumer;
 
-import com.p1ufcg.model.Duvida;
-import com.p1ufcg.repository.DuvidaRepository;
-import com.p1ufcg.util.Configs;
+import com.zkpnz.model.Duvida;
+import com.zkpnz.repository.DuvidaRepository;
+import com.zkpnz.util.Configs;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;

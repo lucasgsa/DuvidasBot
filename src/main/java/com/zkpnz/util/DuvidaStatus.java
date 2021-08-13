@@ -1,4 +1,4 @@
-package com.p1ufcg.util;
+package com.zkpnz.util;
 
 public enum DuvidaStatus {
 	Iniciada, EmAndamento, Finalizada

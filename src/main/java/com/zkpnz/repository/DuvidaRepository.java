@@ -1,4 +1,4 @@
-package com.p1ufcg.repository;
+package com.zkpnz.repository;
 
 import java.util.List;
 
@@ -6,14 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import com.p1ufcg.model.Duvida;
-import com.p1ufcg.util.DuvidaStatus;
+import com.zkpnz.model.Duvida;
+import com.zkpnz.util.DuvidaStatus;
 
 public class DuvidaRepository {
 	private static EntityManager entityManager;
 	
 	public DuvidaRepository() {
-		EntityManagerFactory entityManagerFactory =Persistence.createEntityManagerFactory("DuvidasDB");
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DuvidasDB");
 		this.entityManager = entityManagerFactory.createEntityManager();
 	}
 	

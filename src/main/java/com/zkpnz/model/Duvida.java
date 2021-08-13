@@ -1,9 +1,9 @@
-package com.p1ufcg.model;
+package com.zkpnz.model;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.p1ufcg.util.DuvidaStatus;
+import com.zkpnz.util.DuvidaStatus;
 
 import javax.persistence.Entity;
 

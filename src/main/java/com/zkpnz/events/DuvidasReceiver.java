@@ -1,8 +1,8 @@
-package com.p1ufcg.events;
+package com.zkpnz.events;
 
-import com.p1ufcg.repository.DuvidaRepository;
-import com.p1ufcg.util.ComandosFormat;
-import com.p1ufcg.util.Configs;
+import com.zkpnz.repository.DuvidaRepository;
+import com.zkpnz.util.ComandosFormat;
+import com.zkpnz.util.Configs;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;

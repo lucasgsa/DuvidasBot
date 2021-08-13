@@ -3,6 +3,9 @@
 <h2> Bot para discord que organiza dúvidas em salas, para facilitar o trabalho em com alunos de forma virtual.</h2>
 
 <h2> Desenvolvido em Java, utilizando Maven para gerenciar as dependências.</h2>
+<h2> O deploy do bot foi feito via Heroku, mas é fácil adaptar para outras clouds.</h2>
+<h2> Como ele foi feito com intuito de você poder modificar do seu jeito, você pode criar seu próprio usuário BOT no discord,
+e substituir o token em util/Configs.java para seu próprio token.</h2>
 
 ## To-do:
  * Há a possibilidade de adicionar estatísticas, e um painel de informações de cada aluno, suas dificuldades etc.

@@ -1,4 +1,4 @@
-package com.p1ufcg.launcher;
+package com.zkpnz.launcher;
 import java.io.IOException;
 
 import javax.security.auth.login.LoginException;
